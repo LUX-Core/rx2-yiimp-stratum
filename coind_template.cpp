@@ -319,13 +319,11 @@ YAAMP_JOB_TEMPLATE *coind_create_template(YAAMP_COIND *coind)
 			seed_count++;		
 		if (!seed_init) {
 			seed_init=true;
-//			seed_count++;
 			active_seed = seedHash;
 			init_dataset(active_seed);
 		}
-		if (active_seed!=seedHash /*|| seed_count%100==0*/)
+		if (active_seed!=seedHash)
 		{
-//			seed_count++;
 			active_seed = seedHash;
 			init_dataset(active_seed);
 		}
