@@ -144,7 +144,7 @@ static void client_do_submit(YAAMP_CLIENT *client, YAAMP_JOB *job, YAAMP_JOB_VAL
         uint64_t hash_int = * (uint64_t *) &submitvalues->hash_bin[24];
         uint64_t coin_target = decode_compact(templ->nbits) / 0x10000;
 
-	int block_size = YAAMP_SMALLBUFSIZE;
+	int block_size = 4*YAAMP_SMALLBUFSIZE;
 	vector<string>::const_iterator i;
 
 	for(i = templ->txdata.begin(); i != templ->txdata.end(); ++i)
@@ -342,7 +342,7 @@ static bool ntime_valid_range(const char ntimehex[])
 	uint32_t ntime = 0;
 	if (strlen(ntimehex) != 8) return false;
 	sscanf(ntimehex, "%8x", &ntime);
-	if (ntime < 0x5b000000 || ntime > 0x60000000) // 14 Jan 2021
+	if (ntime < 0x5b000000 || ntime > 0x80000000) // 14 Jan 2021
 		return false;
 	time(&rawtime);
 	return (abs(rawtime - ntime) < (30 * 60));

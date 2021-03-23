@@ -159,7 +159,7 @@ void clientlog(YAAMP_CLIENT *client, const char *format, ...)
 
 void debuglog(const char *format, ...)
 {
-	char buffer[YAAMP_SMALLBUFSIZE];
+	char buffer[4*YAAMP_SMALLBUFSIZE];
 	va_list args;
 
 	va_start(args, format);
