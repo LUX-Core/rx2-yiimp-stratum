@@ -68,6 +68,10 @@ clean:
 	rm -f sha3/*.a
 	rm -f algos/ar2/*.o
 	rm -f RandomX/src/*.o
+	rm -f satoshi/*.o
+	rm -f iniparser/src/*.o
+	rm -f algos/SWIFFTX/*.o
+	rm -f algos/blake2/*.o
 
 install: clean all
 	strip -s stratum

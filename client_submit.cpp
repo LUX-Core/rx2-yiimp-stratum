@@ -261,6 +261,8 @@ static void client_do_submit(YAAMP_CLIENT *client, YAAMP_JOB *job, YAAMP_JOB_VAL
 			memset(doublehash2, 0, 128);
 
 			YAAMP_HASH_FUNCTION merkle_hash = sha256_double_hash_hex;
+            if (!strcmp("rx2", coind->algo))
+                                merkle_hash = phi2_blockhash_hex;			
 			//if (g_current_algo->merkle_func)
 			//	merkle_hash = g_current_algo->merkle_func;
 
@@ -342,8 +344,6 @@ static bool ntime_valid_range(const char ntimehex[])
 	uint32_t ntime = 0;
 	if (strlen(ntimehex) != 8) return false;
 	sscanf(ntimehex, "%8x", &ntime);
-	if (ntime < 0x5b000000 || ntime > 0x80000000) // 14 Jan 2021
-		return false;
 	time(&rawtime);
 	return (abs(rawtime - ntime) < (30 * 60));
 }
